@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note List</title>
+</head>
+<body>
+<h1>Note List</h1>
+<ul>
+    <th:block th:each="note : ${notes}">
+        <li>
+            <strong th:text="${note.title}">Title</strong>:
+            <span th:text="${note.content}">Content</span>
+
+            <!-- Кнопка для видалення нотатки -->
+            <form action="/note/delete" method="post" style="display:inline;">
+                <input type="hidden" name="id" th:value="${note.id}">
+                <button type="submit">Delete</button>
+            </form>
+
+            <!-- Кнопка для редагування нотатки -->
+            <a th:href="'/note/edit?id=' + ${note.id}">
+                <button type="button">Edit</button>
+            </a>
+        </li>
+    </th:block>
+</ul>
+</body>
+</html>
